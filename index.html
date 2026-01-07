@@ -3,31 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>İşıqlandırma Hesabı • Lümen Metodu</title>
-
+  <title>İşıqlandırma Hesabı</title>
   <link rel="stylesheet" href="./style.css">
-
-  <link rel="icon" type="image/svg+xml"
-    href='data:image/svg+xml;utf8,
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-      <defs>
-        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop stop-color="%235b7cff"/>
-          <stop offset="1" stop-color="%238b5cf6"/>
-        </linearGradient>
-      </defs>
-      <rect width="64" height="64" rx="14" fill="url(%23g)"/>
-      <path d="M32 10c7 0 12 5 12 12 0 5-2 8-6 11-2 2-2 4-2 6H28c0-2 0-4-2-6-4-3-6-6-6-11 0-7 5-12 12-12z" fill="white" opacity="0.95"/>
-      <rect x="27" y="44" width="10" height="4" rx="2" fill="white" opacity="0.9"/>
-      <rect x="28" y="50" width="8" height="4" rx="2" fill="white" opacity="0.85"/>
-    </svg>'>
 </head>
 
 <body>
   <div class="led-bg" aria-hidden="true">
     <span class="led l1"></span><span class="led l2"></span><span class="led l3"></span>
     <span class="led l4"></span><span class="led l5"></span><span class="led l6"></span>
-    <span class="led l7"></span><span class="led l8"></span><span class="led l9"></span>
   </div>
 
   <main class="wrap">
@@ -35,119 +18,97 @@
       <header class="head">
         <div class="brand">
           <div class="logo" aria-hidden="true">💡</div>
-          <div class="brandText">
+          <div class="t">
             <h1>İşıqlandırma Hesabı</h1>
-            <p>Lümen metodu ilə ilkin armatur sayı (preset + izah + paylaş link)</p>
+            <p>Lümen metodu • sürətli ilkin hesab</p>
           </div>
         </div>
-        <div class="pill">V1</div>
+        <span class="pill">V1</span>
       </header>
 
-      <div class="grid">
-        <!-- LEFT: Inputs -->
-        <div class="panel">
-          <div class="panelTitle">Girişlər</div>
-
-          <div class="field">
-            <label>Mühit (preset)</label>
-            <select id="preset"></select>
-            <div class="help">
-              Preset seçəndə <b>lux / UF / MF</b> avtomatik dolur. İstəsən sonradan özün dəyiş.
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Sahə (m²)</label>
-            <input id="area" type="number" min="1" value="30" />
-            <div class="help">Otağın döşəmə sahəsi. Hesab iş səthinə görə aparılır.</div>
-          </div>
-
-          <div class="field">
-            <label>Tələb olunan işıqlanma (lux)</label>
-            <input id="lux" type="number" min="1" value="300" />
-            <div class="help">
-              İş səthində tələb olunan işıq səviyyəsi. Presetlər EN 12464 praktikası əsasında verilib.
-            </div>
-          </div>
-
-          <div class="two">
-            <div class="field">
-              <label>UF (Utilization Factor)</label>
-              <input id="uf" type="number" step="0.01" min="0.1" max="0.95" value="0.6" />
-              <div class="help">
-                Armaturdan çıxan işığın neçə faizi real olaraq iş səthinə çatır (rənglər, ölçü, optika).
-              </div>
-            </div>
-
-            <div class="field">
-              <label>MF (Maintenance Factor)</label>
-              <input id="mf" type="number" step="0.01" min="0.1" max="0.95" value="0.8" />
-              <div class="help">
-                Zamanla zəifləmə və çirklənmə itkiləri. Təmiz mühitdə adətən 0.75–0.85.
-              </div>
-            </div>
-          </div>
-
-          <div class="field">
-            <label>1 armaturun işıq axını (lm)</label>
-            <input id="luminaire" type="number" min="1" value="3200" />
-            <div class="help">
-              İstehsalçı kataloqunda yazılan “luminous flux” (lm) dəyəri.
-            </div>
-          </div>
-
-          <div class="actions">
-            <button id="calcBtn" class="btn primary">Hesabla</button>
-            <button id="copyBtn" class="btn ghost">Nəticəni kopyala</button>
-          </div>
-
-          <div class="mini">
-            <div class="miniRow">
-              <span class="dot"></span>
-              <span>Paylaş linki avtomatik yenilənir (URL parametrləri).</span>
-            </div>
-            <div class="miniRow">
-              <span class="dot"></span>
-              <span>Bu alət ilkin seçim üçündür; Dialux/Relux ilə yoxla.</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT: Output -->
-        <div class="panel out">
-          <div class="panelTitle">Nəticə</div>
-
-          <div id="status" class="status warn">
-            Dəyərləri daxil et və <b>Hesabla</b> bas.
-          </div>
-
-          <div class="hero">
-            <div class="heroTop">
-              <div class="heroLabel">Tövsiyə olunan armatur sayı</div>
-              <div class="heroValue" id="fixtureCount">—</div>
-            </div>
+      <div class="content">
+        <!-- HERO RESULT (always visible, big) -->
+        <div class="hero">
+          <div class="heroLeft">
+            <div class="heroTitle">Tövsiyə olunan armatur sayı</div>
+            <div class="heroValue" id="fixtureCount">—</div>
             <div class="heroSub" id="layoutHint">—</div>
           </div>
-
-          <div class="details" id="details"></div>
-
-          <details class="why">
-            <summary>“Niyə belə çıxdı?” (izah)</summary>
-            <div id="whyBox" class="whyBox"></div>
-          </details>
-
-          <div class="note">
-            <b>Qeyd:</b> Bu hesab UGR, parıltı, paylanma xəritəsi, reflekslər və spesifik armatur fotometriyasını hesablamır.
-            Real layihədə əlavə yoxlamalar şərtdir.
+          <div class="heroRight">
+            <div id="status" class="status warn">Dəyərləri daxil et və <b>Hesabla</b> bas.</div>
+            <div class="heroMini" id="heroMini"></div>
           </div>
         </div>
-      </div>
 
-      <footer class="foot">
-        <span>Hazırlayan: Rustam Khudaverdiyev</span>
-        <span class="sep">•</span>
-        <span>İşıqlandırma • Lümen metodu</span>
-      </footer>
+        <div class="grid">
+          <!-- INPUTS -->
+          <div class="panel">
+            <div class="panelTitle">Girişlər</div>
+
+            <div class="field">
+              <label>Mühit (preset)</label>
+              <select id="preset"></select>
+            </div>
+
+            <div class="two">
+              <div class="field">
+                <label>Sahə (m²)</label>
+                <input id="area" type="number" min="1" value="30" />
+              </div>
+              <div class="field">
+                <label>İşıqlanma (lux)</label>
+                <input id="lux" type="number" min="1" value="300" />
+              </div>
+            </div>
+
+            <div class="two">
+              <div class="field">
+                <label>UF</label>
+                <input id="uf" type="number" step="0.01" min="0.1" max="0.95" value="0.6" />
+              </div>
+              <div class="field">
+                <label>MF</label>
+                <input id="mf" type="number" step="0.01" min="0.1" max="0.95" value="0.8" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>1 armatur (lm)</label>
+              <input id="luminaire" type="number" min="1" value="3200" />
+            </div>
+
+            <div class="actions">
+              <button id="calcBtn" class="btn primary">Hesabla</button>
+              <button id="copyBtn" class="btn ghost">Kopyala</button>
+              <button id="infoBtn" class="btn light">İzah</button>
+            </div>
+
+            <div class="hint">
+              Paylaş linki URL-də saxlanır. Bu alət ilkin seçim üçündür (Dialux/Relux yoxlaması şərtdir).
+            </div>
+          </div>
+
+          <!-- DETAILS (collapsed by default) -->
+          <div class="panel">
+            <div class="panelTitle">Detallar</div>
+
+            <div id="details" class="details"></div>
+
+            <details class="why">
+              <summary>“Niyə belə çıxdı?”</summary>
+              <div id="whyBox" class="whyBox"></div>
+            </details>
+
+            <div class="note">
+              Qeyd: UGR, paylanma xəritəsi və fotometriya burada hesablanmır.
+            </div>
+          </div>
+        </div>
+
+        <footer class="foot">
+          Hazırlayan: Rustam Khudaverdiyev • İşıqlandırma • Lümen metodu
+        </footer>
+      </div>
     </section>
   </main>
 
