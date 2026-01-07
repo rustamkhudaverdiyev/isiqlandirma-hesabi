@@ -260,17 +260,25 @@ copyBtn.addEventListener("click", async () => {
   }
 });
 
-infoBtn.addEventListener("click", () => {
-  alert(
-`UF (Utilization Factor): armaturdan çıxan işığın iş səthinə çatan payı (optika, ölçü, rəng, refleks).
-MF (Maintenance Factor): zamanla çirklənmə və zəifləmə itkiləri.
+if (infoBtn) {
+  infoBtn.addEventListener("click", () => {
+    alert(
+`UF (Utilization Factor):
+Armaturdan çıxan işığın iş səthinə çatan hissəsi.
+Optika, reflekslər, otaq ölçüsü təsir edir.
+
+MF (Maintenance Factor):
+Zamanla çirklənmə, lampanın zəifləməsi.
+Adətən 0.75–0.85 arası götürülür.
 
 Formula:
-Φ_total = (E × S) / (UF × MF)
-N = ceil(Φ_total / Φ_armatur)
+Ümumi lümen = (lux × sahə) / (UF × MF)
+Armatur sayı = yuxarı yuvarlaqla (ümumi lümen / 1 armatur lümeni)
 
-Bu alət ilkin seçim üçündür; dəqiq layihə üçün Dialux/Relux ilə yoxlama tövsiyə olunur.`
-  );
+Bu alət ilkin seçim üçündür.
+Dəqiq layihə üçün Dialux / Relux istifadə olunur.`
+    );
+  });
 });
 
 // Init
