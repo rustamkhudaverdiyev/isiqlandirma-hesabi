@@ -1,5 +1,6 @@
 // İŞIQLANDIRMA HESABI (V1)
 // Lümen metodu ilə ilkin armatur sayı: preset + izah + paylaş link + kopyalama
+console.log("App.js YÜKLƏNDİ ✅");
 
 // Presetlər (istəsən artıra bilərsən)
 const PRESETS = [
