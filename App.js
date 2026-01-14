@@ -277,7 +277,7 @@ Formula:
 Armatur sayı = yuxarı yuvarlaqla (ümumi lümen / 1 armatur lümeni)
 
 Bu alət ilkin seçim üçündür.
-Dəqiq layihə üçün Dialux / Relux istifada olunur.);
+Dəqiq layihə üçün Dialux / Relux istifada olunur.`);
     });
   }
 
