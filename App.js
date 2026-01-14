@@ -1,7 +1,7 @@
 // İŞIQLANDIRMA HESABI (V1)
 // Lümen metodu ilə ilkin armatur sayı: preset + izah + paylaş link + kopyalama
 console.log("App.js YÜKLƏNDİ ✅");
-
+alert("APP.JS YENILENDI 999");
 // Presetlər (istəsən artıra bilərsən)
 const PRESETS = [
   // Ev / mənzil
@@ -276,7 +276,7 @@ Formula:
 Armatur sayı = yuxarı yuvarlaqla (ümumi lümen / 1 armatur lümeni)
 
 Bu alət ilkin seçim üçündür.
-Dəqiq layihə üçün Dialux / Relux istifadə olunur.`);
+Dəqiq layihə üçün Dialux / Relux istifada olunur.);
   });
 }
 
