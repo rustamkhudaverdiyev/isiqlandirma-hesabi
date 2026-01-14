@@ -263,8 +263,7 @@ copyBtn.addEventListener("click", async () => {
 
 if (infoBtn) {
   infoBtn.addEventListener("click", () => {
-    alert(
-`UF (Utilization Factor):
+    alert(`UF (Utilization Factor):
 Armaturdan çıxan işığın iş səthinə çatan hissəsi.
 Optika, reflekslər, otaq ölçüsü təsir edir.
 
@@ -277,10 +276,9 @@ Formula:
 Armatur sayı = yuxarı yuvarlaqla (ümumi lümen / 1 armatur lümeni)
 
 Bu alət ilkin seçim üçündür.
-Dəqiq layihə üçün Dialux / Relux istifadə olunur.`
-    );
+Dəqiq layihə üçün Dialux / Relux istifadə olunur.`);
   });
-});
+}
 
 // Init
 fillPresets();
