@@ -4,12 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>İşıqlandırma Hesabı</title>
+
   <link rel="stylesheet" href="./style.css">
+
   <link rel="icon" href="data:image/svg+xml,
   <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
   <text y='.9em' font-size='90'>💡</text>
   </svg>">
 </head>
+
 <body>
   <div class="led-bg" aria-hidden="true">
     <span class="led l1"></span><span class="led l2"></span><span class="led l3"></span>
@@ -30,19 +33,24 @@
       </header>
 
       <div class="content">
+        <!-- HERO RESULT -->
         <div class="hero">
           <div class="heroLeft">
             <div class="heroTitle">Tövsiyə olunan armatur sayı</div>
             <div class="heroValue" id="fixtureCount">—</div>
             <div class="heroSub" id="layoutHint">—</div>
           </div>
+
           <div class="heroRight">
-            <div id="status" class="status warn">Dəyərləri daxil et və <b>Hesabla</b> bas.</div>
+            <div id="status" class="status warn">
+              Dəyərləri daxil et və <b>Hesabla</b> bas.
+            </div>
             <div class="heroMini" id="heroMini"></div>
           </div>
         </div>
 
         <div class="grid">
+          <!-- INPUTS -->
           <div class="panel">
             <div class="panelTitle">Girişlər</div>
 
@@ -54,28 +62,30 @@
             <div class="two">
               <div class="field">
                 <label>Sahə (m²)</label>
-                <input id="area" type="number" min="1" value="" />
+                <input id="area" type="number" min="1" placeholder="məs: 30" />
               </div>
+
               <div class="field">
                 <label>İşıqlanma (lux)</label>
-                <input id="lux" type="number" min="1" value="" />
+                <input id="lux" type="number" min="1" placeholder="məs: 300" />
               </div>
             </div>
 
             <div class="two">
               <div class="field">
                 <label>UF</label>
-                <input id="uf" type="number" step="0.01" min="0.1" max="0.95" value="0.6" />
+                <input id="uf" type="number" step="0.01" min="0.1" max="0.95" placeholder="məs: 0.60" />
               </div>
+
               <div class="field">
                 <label>MF</label>
-                <input id="mf" type="number" step="0.01" min="0.1" max="0.95" value="0.8" />
+                <input id="mf" type="number" step="0.01" min="0.1" max="0.95" placeholder="məs: 0.80" />
               </div>
             </div>
 
             <div class="field">
               <label>1 armatur (lm)</label>
-              <input id="luminaire" type="number" min="1" value="3200" />
+              <input id="luminaire" type="number" min="1" placeholder="məs: 3200" />
             </div>
 
             <div class="actions">
@@ -89,6 +99,7 @@
             </div>
           </div>
 
+          <!-- DETAILS -->
           <div class="panel">
             <div class="panelTitle">Detallar</div>
 
@@ -112,7 +123,7 @@
     </section>
   </main>
 
-  <!-- TƏK script: debug scriptləri SİL -->
+  <!-- Tək qoş -->
   <script src="./App.js"></script>
 </body>
 </html>
