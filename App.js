@@ -1,13 +1,12 @@
 // İŞIQLANDIRMA HESABI (V1)
 // Lümen metodu ilə ilkin armatur sayı: preset + izah + paylaş link + kopyalama
 
-// Eyni fayl 2 dəfə yüklənirsə "PRESETS already declared" olmasın deyə guard
+// 2 dəfə yüklənməyə qarşı guard (index-də səhvən iki script olsa belə partlamasın)
 if (window.__LIGHT_APP_LOADED__) {
   console.warn("App.js artıq yüklənib (2-ci dəfə). Script dayandırıldı.");
 } else {
   window.__LIGHT_APP_LOADED__ = true;
 
-  // Presetlər (istəsən artıra bilərsən)
   const PRESETS = [
     // Ev / mənzil
     { key: "dehliz",  name: "Dəhliz / Holl",          lux: 100, uf: 0.55, mf: 0.80 },
@@ -48,7 +47,7 @@ if (window.__LIGHT_APP_LOADED__) {
   const whyBoxEl = document.getElementById("whyBox");
   const heroMiniEl = document.getElementById("heroMini");
 
-  // Sərt yoxlama: elementlərdən biri yoxdursa, boşuna davam eləmə
+  // Sərt yoxlama
   const must = {
     presetEl, areaEl, luxEl, ufEl, mfEl, luminaireEl,
     calcBtn, copyBtn,
@@ -57,12 +56,10 @@ if (window.__LIGHT_APP_LOADED__) {
   for (const [k, v] of Object.entries(must)) {
     if (!v) {
       console.error("DOM tapılmadı:", k);
-      // script-i dayandır
       throw new Error("DOM element missing: " + k);
     }
   }
 
-  // Helpers
   function fmt(n, d = 2) {
     return Number.isFinite(n) ? Number(n).toFixed(d) : "—";
   }
@@ -70,7 +67,6 @@ if (window.__LIGHT_APP_LOADED__) {
     return Math.ceil(Number(n));
   }
 
-  // Layout təxmini (gözə xoş "2×3" kimi)
   function suggestGrid(n) {
     if (!Number.isFinite(n) || n <= 0) return "—";
     let best = { r: 1, c: n, score: Infinity };
@@ -82,7 +78,6 @@ if (window.__LIGHT_APP_LOADED__) {
     return `${best.r}×${best.c}`;
   }
 
-  // URL param
   function getInputs() {
     return {
       preset: presetEl.value || "",
@@ -124,7 +119,6 @@ if (window.__LIGHT_APP_LOADED__) {
     history.replaceState({}, "", u.toString());
   }
 
-  // Preset doldur
   function fillPresets() {
     presetEl.innerHTML = "";
 
@@ -149,7 +143,6 @@ if (window.__LIGHT_APP_LOADED__) {
     mfEl.value = p.mf;
   }
 
-  // Hesab
   function calc(inp) {
     const { area, lux, uf, mf, lm } = inp;
 
@@ -166,7 +159,6 @@ if (window.__LIGHT_APP_LOADED__) {
     return { ok: true, totalLumens, n, layout: suggestGrid(n) };
   }
 
-  // UI
   function setStatus(type, html) {
     statusEl.classList.remove("ok", "warn", "err");
     statusEl.classList.add(type);
@@ -189,7 +181,6 @@ if (window.__LIGHT_APP_LOADED__) {
 
     fixtureCountEl.textContent = res.n;
     layoutHintEl.textContent = `Təxmini yerləşmə: ${res.layout}`;
-
     setStatus("ok", `Hesablandı. Preset+faktorlar dəyişsən nəticə dərhal dəyişəcək.`);
 
     heroMiniEl.innerHTML = `
