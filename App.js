@@ -237,7 +237,7 @@ Qeyd: Bu hesab ilkin seçim üçündür (Dialux/Relux yoxlaması tövsiyə olunu
   // Events
   presetEl.addEventListener("change", () => {
     if (presetEl.value) applyPreset(presetEl.value);
-    run();
+    setStatus("warn", "Dəyərlər dolduruldu. İndi <b>Hesabla</b> bas.");
   });
 
   calcBtn.addEventListener("click", run);
