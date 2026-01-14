@@ -276,5 +276,5 @@ Dəqiq layihə üçün Dialux / Relux istifada olunur.`);
   fillPresets();
   setInputsFromParams();
   if (presetEl.value) applyPreset(presetEl.value);
-  run();
+  // run();
 }
